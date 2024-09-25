@@ -87,7 +87,8 @@ setup(
     long_description_content_type="text/markdown",
     author="Mark Poroshin",
     author_email="mark.poroshin@yandex.ru",
-    url="https://github.com/markporoshin/dbt-greenplum",
+    url="https://github.com/hovercraft-github/dbt-greenplum",
+    # url="https://github.com/markporoshin/dbt-greenplum",
     packages=find_namespace_packages(include=["dbt", "dbt.*"]),
     package_data={
         "dbt": [
@@ -109,12 +110,12 @@ setup(
         "Operating System :: Microsoft :: Windows",
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: POSIX :: Linux",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
     ],
-    python_requires=">=3.7",
+    python_requires=">=3.8",
 )
 
