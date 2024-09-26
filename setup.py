@@ -75,6 +75,7 @@ def _get_dbt_core_version():
 package_name = "dbt-greenplum"
 package_version = _get_package_version()
 dbt_core_version = _get_dbt_core_version()
+dbt_adapters_version = "1.7"
 description = """The greenplum adapter plugin for dbt (data build tool)"""
 
 DBT_PSYCOPG2_NAME = _dbt_psycopg2_name()
@@ -100,6 +101,7 @@ setup(
     },
     install_requires=[
         "dbt-core~={}".format(dbt_core_version),
+        "dbt-adapters~={}".format(dbt_adapters_version),
         "dbt-postgres~={}".format(package_version),
         "{}~=2.8".format(DBT_PSYCOPG2_NAME),
     ],
