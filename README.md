@@ -20,6 +20,21 @@ The `dbt-greenplum` package contains the code enabling dbt to work with Greenplu
 
 ## Installation
 
+Since dbt-core v1.8 there is no direct correspondence requirement between core and adapter version,  
+so dbt-greenplum v1.8 and up should be compatible with any upcoming dbt-core version.  
+See more about it here: [dbt-1.8 adapter/core decoupling](https://github.com/dbt-labs/dbt-adapters/discussions/87).
+
+To install fresh version, one can add this line to `requirements.txt`  
+```
+dbt-greenplum @ git+https://github.com/hovercraft-github/dbt-greenplum.git@develop
+```
+and install using pip:
+```bash
+pip install -r requirements.txt
+```
+
+### For versions prior 1.8:
+
 Easiest way to start use dbt-greenplum is to install it using pip
 `pip install dbt-greenplum==<version>`
 

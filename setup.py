@@ -60,22 +60,35 @@ def _get_plugin_version_dict():
 
 def _get_package_version():
     parts = _get_plugin_version_dict()
-    minor = "{major}.{minor}.0".format(**parts)
+    minor = "{major}.{minor}.{patch}".format(**parts)
     pre = parts["prekind"] + "1" if parts["prekind"] else ""
     return f"{minor}{pre}"
+
+
+def _get_pg_adapter_version():
+    parts = _get_plugin_version_dict()
+    return f"{parts['major']}.{'8' if int(parts['major']) < 2 else '0'}"
+
+
+def _get_dbt_adapters_version():
+    parts = _get_plugin_version_dict()
+    return f"{parts['major']}.{'7' if int(parts['major']) < 2 else '0'}"
 
 
 def _get_dbt_core_version():
     parts = _get_plugin_version_dict()
-    minor = "{major}.{minor}.0".format(**parts)
-    pre = parts["prekind"] + "1" if parts["prekind"] else ""
-    return f"{minor}{pre}"
+    ## Since dbt-core v1.8 there is no more need to track the minor version number
+    # minor = "{major}.{minor}.0".format(**parts)
+    # pre = parts["prekind"] + "1" if parts["prekind"] else ""
+    # return f"{minor}{pre}"
+    return f"{parts['major']}.{'8' if int(parts['major']) < 2 else '0'}"
 
 
 package_name = "dbt-greenplum"
 package_version = _get_package_version()
+pg_adapter_version = _get_pg_adapter_version()
 dbt_core_version = _get_dbt_core_version()
-dbt_adapters_version = "1.7"
+dbt_adapters_version = _get_dbt_adapters_version()
 description = """The greenplum adapter plugin for dbt (data build tool)"""
 
 DBT_PSYCOPG2_NAME = _dbt_psycopg2_name()
@@ -102,8 +115,8 @@ setup(
     install_requires=[
         "dbt-core~={}".format(dbt_core_version),
         "dbt-adapters~={}".format(dbt_adapters_version),
-        "dbt-postgres~={}".format(package_version),
-        "{}~=2.8".format(DBT_PSYCOPG2_NAME),
+        "dbt-postgres~={}".format(pg_adapter_version),
+        "{}~=2.9".format(DBT_PSYCOPG2_NAME),
     ],
     zip_safe=False,
     classifiers=[
